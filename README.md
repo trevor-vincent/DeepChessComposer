@@ -1,2 +1,2 @@
 # DeepChessComposer
-Chess Compositions via Generative Advesarial networks
+Chess Compositions via Generative Adversarial networks and Reinforcment learning
