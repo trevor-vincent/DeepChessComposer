@@ -23,9 +23,8 @@ display = Display(visible=0, size=(800, 600))
 display.start()
 
 
-def get_tags(puzzle_num):
+def get_tags(puzzle_num, wait_time, password):
 
-    wait_time = 1
     chrome_options = Options()
     #chrome_options.add_argument("--disable-extensions")
     #chrome_options.add_argument("--disable-gpu")
@@ -45,6 +44,7 @@ def get_tags(puzzle_num):
     webdriver1.get(baseurl)
     time.sleep(wait_time)
     webdriver1.find_element_by_xpath("//*[@id='usernameField']").send_keys("chessraptor")
+    webdriver1.find_element_by_xpath("//*[@id='passwordField']").send_keys(password)
     # time.sleep(wait_time)
     # time.sleep(wait_time)
     webdriver1.find_element_by_xpath("//*[@id='loginButton']").click()
@@ -75,10 +75,18 @@ def get_tags(puzzle_num):
 # //*[@id="passwordField"]
 # //*[@id="loginButton"]
 
+if len(sys.argv) != 5:
+    print("sniffer <puzzle_beg> <puzzle_end> <wait_time> <password>")
+    exit(1)
+    
+ibeg = int(sys.argv[1])
+ifin = int(sys.argv[2])
+wait_time =  float(sys.argv[3])
+password = str(sys.argv[4])
 
-for i in range(12, 78000):
+for i in range(ibeg, ifin):
     try:
-        get_tags(i)
+        get_tags(i, wait_time, password)
         print("Done " + str(i))
     except:
         pass
