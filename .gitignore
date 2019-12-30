@@ -1,2 +1,4 @@
 /src/create_autoencoder.py~
 *~
+*.txt
+*.pgn
